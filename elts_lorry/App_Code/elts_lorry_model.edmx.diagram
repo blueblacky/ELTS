@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dfcd84e6944b40bdbb895bef210dc419" Name="Diagram1">
+        <EntityTypeShape EntityType="eltsModel.tblAdmin" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="eltsModel.city_master" Width="1.5" PointX="6" PointY="3.375" />
+        <EntityTypeShape EntityType="eltsModel.state_master" Width="1.5" PointX="0.5" PointY="3.375" />
+        <AssociationConnector Association="eltsModel.FK_city_master_state_master" />
+        <EntityTypeShape EntityType="eltsModel.city_with_state_view" Width="1.5" PointX="2.875" PointY="0.875" />
+        <EntityTypeShape EntityType="eltsModel.vehicle_type" Width="1.5" PointX="8.75" PointY="3.25" />
+        <EntityTypeShape EntityType="eltsModel.admin_auth" Width="1.5" PointX="2.375" PointY="5.875" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
