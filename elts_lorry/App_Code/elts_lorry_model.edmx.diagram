@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7131a9df43c14c6583a04f5b4b163743" Name="Diagram1">
+        <EntityTypeShape EntityType="eltsModel.area_master" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="eltsModel.city_master" Width="1.5" PointX="3" PointY="2" />
+        <EntityTypeShape EntityType="eltsModel.state_master" Width="1.5" PointX="6" PointY="3.5" />
+        <EntityTypeShape EntityType="eltsModel.tblAdmin" Width="1.5" PointX="9" PointY="5" />
+        <EntityTypeShape EntityType="eltsModel.vehicle_type" Width="1.5" PointX="12" PointY="6.5" />
+        <AssociationConnector Association="eltsModel.FK_area_master_city_master" />
+        <AssociationConnector Association="eltsModel.FK_area_master_state_master" />
+        <AssociationConnector Association="eltsModel.FK_city_master_state_master1" />
+        <EntityTypeShape EntityType="eltsModel.city_with_state_view" Width="1.5" PointX="1.125" PointY="5.625" />
+        <EntityTypeShape EntityType="eltsModel.area_city_state_view" Width="1.5" PointX="3.625" PointY="7.125" />
+        <EntityTypeShape EntityType="eltsModel.user_details" Width="1.5" PointX="0.5" PointY="9.375" />
+        <EntityTypeShape EntityType="eltsModel.user_profile" Width="1.5" PointX="2.75" PointY="10.25" />
+        <AssociationConnector Association="eltsModel.FK_user_details_user_details" />
+        <AssociationConnector Association="eltsModel.FK_user_profile_user_profile" />
+        <EntityTypeShape EntityType="eltsModel.user_profile_with_user_details_view" Width="1.5" PointX="9.9491335274414787" PointY="8.0189579017548631" />
+        <AssociationConnector Association="eltsModel.FK_user_details_state_master" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

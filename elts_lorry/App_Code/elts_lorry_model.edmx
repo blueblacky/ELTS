@@ -1,0 +1,741 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="eltsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="eltsModelStoreContainer">
+          <EntitySet Name="area_master" EntityType="eltsModel.Store.area_master" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="city_master" EntityType="eltsModel.Store.city_master" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="state_master" EntityType="eltsModel.Store.state_master" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblAdmin" EntityType="eltsModel.Store.tblAdmin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="user_details" EntityType="eltsModel.Store.user_details" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="user_profile" EntityType="eltsModel.Store.user_profile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vehicle_type" EntityType="eltsModel.Store.vehicle_type" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="area_city_state_view" EntityType="eltsModel.Store.area_city_state_view" store:Type="Views" store:Schema="dbo" store:Name="area_city_state_view">
+            <DefiningQuery>SELECT 
+      [area_city_state_view].[area_id] AS [area_id], 
+      [area_city_state_view].[area_name] AS [area_name], 
+      [area_city_state_view].[city_id] AS [city_id], 
+      [area_city_state_view].[state_id] AS [state_id], 
+      [area_city_state_view].[city_name] AS [city_name], 
+      [area_city_state_view].[state_name] AS [state_name]
+      FROM [dbo].[area_city_state_view] AS [area_city_state_view]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="city_with_state_view" EntityType="eltsModel.Store.city_with_state_view" store:Type="Views" store:Schema="dbo" store:Name="city_with_state_view">
+            <DefiningQuery>SELECT 
+      [city_with_state_view].[state_id] AS [state_id], 
+      [city_with_state_view].[state_name] AS [state_name], 
+      [city_with_state_view].[city_id] AS [city_id], 
+      [city_with_state_view].[city_name] AS [city_name], 
+      [city_with_state_view].[state_master_id] AS [state_master_id]
+      FROM [dbo].[city_with_state_view] AS [city_with_state_view]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="user_profile_with_user_details_view" EntityType="eltsModel.Store.user_profile_with_user_details_view" store:Type="Views" store:Schema="dbo" store:Name="user_profile_with_user_details_view">
+            <DefiningQuery>SELECT 
+      [user_profile_with_user_details_view].[pro_id] AS [pro_id], 
+      [user_profile_with_user_details_view].[full_name] AS [full_name], 
+      [user_profile_with_user_details_view].[email] AS [email], 
+      [user_profile_with_user_details_view].[ph_no] AS [ph_no], 
+      [user_profile_with_user_details_view].[address_1] AS [address_1], 
+      [user_profile_with_user_details_view].[city] AS [city], 
+      [user_profile_with_user_details_view].[address_2] AS [address_2], 
+      [user_profile_with_user_details_view].[state] AS [state], 
+      [user_profile_with_user_details_view].[user_type] AS [user_type], 
+      [user_profile_with_user_details_view].[ct_dt] AS [ct_dt], 
+      [user_profile_with_user_details_view].[ct_by] AS [ct_by], 
+      [user_profile_with_user_details_view].[up_by] AS [up_by], 
+      [user_profile_with_user_details_view].[status] AS [status], 
+      [user_profile_with_user_details_view].[usr_name] AS [usr_name], 
+      [user_profile_with_user_details_view].[usr_pass] AS [usr_pass], 
+      [user_profile_with_user_details_view].[ispass_reset] AS [ispass_reset], 
+      [user_profile_with_user_details_view].[isPhone_verified] AS [isPhone_verified], 
+      [user_profile_with_user_details_view].[isEmail_verified] AS [isEmail_verified], 
+      [user_profile_with_user_details_view].[isOnline] AS [isOnline], 
+      [user_profile_with_user_details_view].[last_login] AS [last_login], 
+      [user_profile_with_user_details_view].[failed_attempts] AS [failed_attempts], 
+      [user_profile_with_user_details_view].[city_name] AS [city_name], 
+      [user_profile_with_user_details_view].[state_name] AS [state_name]
+      FROM [dbo].[user_profile_with_user_details_view] AS [user_profile_with_user_details_view]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_area_master_city_master" Association="eltsModel.Store.FK_area_master_city_master">
+            <End Role="city_master" EntitySet="city_master" />
+            <End Role="area_master" EntitySet="area_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_area_master_state_master" Association="eltsModel.Store.FK_area_master_state_master">
+            <End Role="state_master" EntitySet="state_master" />
+            <End Role="area_master" EntitySet="area_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_city_master_state_master1" Association="eltsModel.Store.FK_city_master_state_master1">
+            <End Role="state_master" EntitySet="state_master" />
+            <End Role="city_master" EntitySet="city_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_details_state_master" Association="eltsModel.Store.FK_user_details_state_master">
+            <End Role="state_master" EntitySet="state_master" />
+            <End Role="user_details" EntitySet="user_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_profile_user_profile" Association="eltsModel.Store.FK_user_profile_user_profile">
+            <End Role="user_details" EntitySet="user_details" />
+            <End Role="user_profile" EntitySet="user_profile" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="area_master">
+          <Key>
+            <PropertyRef Name="area_id" />
+          </Key>
+          <Property Name="area_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="area_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="city_id" Type="int" />
+          <Property Name="state_id" Type="int" />
+          <Property Name="status" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="city_master">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="city_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="city_name" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="state_master_id" Type="int" />
+          <Property Name="status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="state_master">
+          <Key>
+            <PropertyRef Name="state_id" />
+          </Key>
+          <Property Name="state_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="state_name" Type="nchar" MaxLength="100" />
+          <Property Name="status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tblAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UPass" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsOnline" Type="bit" />
+          <Property Name="UpDt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="user_details">
+          <Key>
+            <PropertyRef Name="pro_id" />
+          </Key>
+          <Property Name="pro_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="full_name" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="ph_no" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="altr_ph_no" Type="varchar" MaxLength="15" />
+          <Property Name="address_1" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="address_2" Type="nvarchar" MaxLength="300" />
+          <Property Name="city" Type="int" Nullable="false" />
+          <Property Name="state" Type="int" Nullable="false" />
+          <Property Name="user_type" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="ct_dt" Type="datetime" />
+          <Property Name="ct_by" Type="int" />
+          <Property Name="up_dt" Type="datetime" />
+          <Property Name="up_by" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="user_profile">
+          <Key>
+            <PropertyRef Name="upro_id" />
+          </Key>
+          <Property Name="upro_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="usr_id" Type="int" Nullable="false" />
+          <Property Name="usr_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="usr_pass" Type="nvarchar" MaxLength="20" />
+          <Property Name="ispass_reset" Type="bit" />
+          <Property Name="isPhone_verified" Type="bit" />
+          <Property Name="isEmail_verified" Type="bit" />
+          <Property Name="isOnline" Type="bit" />
+          <Property Name="last_login" Type="datetime" />
+          <Property Name="failed_attempts" Type="int" />
+          <Property Name="ct_dt" Type="datetime" />
+          <Property Name="ct_by" Type="int" />
+          <Property Name="up_dt" Type="datetime" />
+          <Property Name="up_by" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="vehicle_type">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="type_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'elts.dbo.area_city_state_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="area_city_state_view">
+          <Key>
+            <PropertyRef Name="area_id" />
+            <PropertyRef Name="city_name" />
+          </Key>
+          <Property Name="area_id" Type="int" Nullable="false" />
+          <Property Name="area_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="city_id" Type="int" />
+          <Property Name="state_id" Type="int" />
+          <Property Name="city_name" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="state_name" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'elts.dbo.city_with_state_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="city_with_state_view">
+          <Key>
+            <PropertyRef Name="state_id" />
+            <PropertyRef Name="city_id" />
+            <PropertyRef Name="city_name" />
+          </Key>
+          <Property Name="state_id" Type="int" Nullable="false" />
+          <Property Name="state_name" Type="nchar" MaxLength="100" />
+          <Property Name="city_id" Type="int" Nullable="false" />
+          <Property Name="city_name" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="state_master_id" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'elts.dbo.user_profile_with_user_details_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="user_profile_with_user_details_view">
+          <Key>
+            <PropertyRef Name="pro_id" />
+            <PropertyRef Name="full_name" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="ph_no" />
+            <PropertyRef Name="address_1" />
+            <PropertyRef Name="city" />
+            <PropertyRef Name="state" />
+            <PropertyRef Name="user_type" />
+            <PropertyRef Name="city_name" />
+          </Key>
+          <Property Name="pro_id" Type="int" Nullable="false" />
+          <Property Name="full_name" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="ph_no" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="address_1" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="city" Type="int" Nullable="false" />
+          <Property Name="address_2" Type="nvarchar" MaxLength="300" />
+          <Property Name="state" Type="int" Nullable="false" />
+          <Property Name="user_type" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="ct_dt" Type="datetime" />
+          <Property Name="ct_by" Type="int" />
+          <Property Name="up_by" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+          <Property Name="usr_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="usr_pass" Type="nvarchar" MaxLength="20" />
+          <Property Name="ispass_reset" Type="bit" />
+          <Property Name="isPhone_verified" Type="bit" />
+          <Property Name="isEmail_verified" Type="bit" />
+          <Property Name="isOnline" Type="bit" />
+          <Property Name="last_login" Type="datetime" />
+          <Property Name="failed_attempts" Type="int" />
+          <Property Name="city_name" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="state_name" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_area_master_city_master">
+          <End Role="city_master" Type="eltsModel.Store.city_master" Multiplicity="0..1" />
+          <End Role="area_master" Type="eltsModel.Store.area_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city_master">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="area_master">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_area_master_state_master">
+          <End Role="state_master" Type="eltsModel.Store.state_master" Multiplicity="0..1" />
+          <End Role="area_master" Type="eltsModel.Store.area_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state_master">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="area_master">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_city_master_state_master1">
+          <End Role="state_master" Type="eltsModel.Store.state_master" Multiplicity="0..1" />
+          <End Role="city_master" Type="eltsModel.Store.city_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state_master">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="city_master">
+              <PropertyRef Name="state_master_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_details_state_master">
+          <End Role="state_master" Type="eltsModel.Store.state_master" Multiplicity="1" />
+          <End Role="user_details" Type="eltsModel.Store.user_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state_master">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="user_details">
+              <PropertyRef Name="state" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_profile_user_profile">
+          <End Role="user_details" Type="eltsModel.Store.user_details" Multiplicity="1" />
+          <End Role="user_profile" Type="eltsModel.Store.user_profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_details">
+              <PropertyRef Name="pro_id" />
+            </Principal>
+            <Dependent Role="user_profile">
+              <PropertyRef Name="usr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="eltsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="elts_lorry_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="area_master" EntityType="eltsModel.area_master" />
+          <EntitySet Name="city_master" EntityType="eltsModel.city_master" />
+          <EntitySet Name="state_master" EntityType="eltsModel.state_master" />
+          <EntitySet Name="tblAdmins" EntityType="eltsModel.tblAdmin" />
+          <EntitySet Name="vehicle_type" EntityType="eltsModel.vehicle_type" />
+          <AssociationSet Name="FK_area_master_city_master" Association="eltsModel.FK_area_master_city_master">
+            <End Role="city_master" EntitySet="city_master" />
+            <End Role="area_master" EntitySet="area_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_area_master_state_master" Association="eltsModel.FK_area_master_state_master">
+            <End Role="state_master" EntitySet="state_master" />
+            <End Role="area_master" EntitySet="area_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_city_master_state_master1" Association="eltsModel.FK_city_master_state_master1">
+            <End Role="state_master" EntitySet="state_master" />
+            <End Role="city_master" EntitySet="city_master" />
+          </AssociationSet>
+          <EntitySet Name="city_with_state_view" EntityType="eltsModel.city_with_state_view" />
+          <EntitySet Name="area_city_state_view" EntityType="eltsModel.area_city_state_view" />
+          <EntitySet Name="user_details" EntityType="eltsModel.user_details" />
+          <EntitySet Name="user_profile" EntityType="eltsModel.user_profile" />
+          <AssociationSet Name="FK_user_details_user_details" Association="eltsModel.FK_user_details_user_details">
+            <End Role="user_details" EntitySet="user_details" />
+            <End Role="user_details1" EntitySet="user_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_profile_user_profile" Association="eltsModel.FK_user_profile_user_profile">
+            <End Role="user_details" EntitySet="user_details" />
+            <End Role="user_profile" EntitySet="user_profile" />
+          </AssociationSet>
+          <EntitySet Name="user_profile_with_user_details_view" EntityType="eltsModel.user_profile_with_user_details_view" />
+          <AssociationSet Name="FK_user_details_state_master" Association="eltsModel.FK_user_details_state_master">
+            <End Role="state_master" EntitySet="state_master" />
+            <End Role="user_details" EntitySet="user_details" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="area_master">
+          <Key>
+            <PropertyRef Name="area_id" />
+          </Key>
+          <Property Type="Int32" Name="area_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="area_name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="city_id" />
+          <Property Type="Int32" Name="state_id" />
+          <Property Type="String" Name="status" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="city_master" Relationship="eltsModel.FK_area_master_city_master" FromRole="area_master" ToRole="city_master" />
+          <NavigationProperty Name="state_master" Relationship="eltsModel.FK_area_master_state_master" FromRole="area_master" ToRole="state_master" />
+        </EntityType>
+        <EntityType Name="city_master">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Type="Int32" Name="city_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="city_name" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="state_master_id" />
+          <Property Type="String" Name="status" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="area_master" Relationship="eltsModel.FK_area_master_city_master" FromRole="city_master" ToRole="area_master" />
+          <NavigationProperty Name="state_master" Relationship="eltsModel.FK_city_master_state_master1" FromRole="city_master" ToRole="state_master" />
+        </EntityType>
+        <EntityType Name="state_master">
+          <Key>
+            <PropertyRef Name="state_id" />
+          </Key>
+          <Property Type="Int32" Name="state_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="state_name" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="status" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="area_master" Relationship="eltsModel.FK_area_master_state_master" FromRole="state_master" ToRole="area_master" />
+          <NavigationProperty Name="city_master" Relationship="eltsModel.FK_city_master_state_master1" FromRole="state_master" ToRole="city_master" />
+          <NavigationProperty Name="user_details" Relationship="eltsModel.FK_user_details_state_master" FromRole="state_master" ToRole="user_details" />
+        </EntityType>
+        <EntityType Name="tblAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UPass" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsOnline" />
+          <Property Type="DateTime" Name="UpDt" Precision="3" />
+        </EntityType>
+        <EntityType Name="vehicle_type">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Type="Int32" Name="type_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="type_name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="status" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_area_master_city_master">
+          <End Type="eltsModel.city_master" Role="city_master" Multiplicity="0..1" />
+          <End Type="eltsModel.area_master" Role="area_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city_master">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="area_master">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_area_master_state_master">
+          <End Type="eltsModel.state_master" Role="state_master" Multiplicity="0..1" />
+          <End Type="eltsModel.area_master" Role="area_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state_master">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="area_master">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_city_master_state_master1">
+          <End Type="eltsModel.state_master" Role="state_master" Multiplicity="0..1" />
+          <End Type="eltsModel.city_master" Role="city_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state_master">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="city_master">
+              <PropertyRef Name="state_master_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="city_with_state_view">
+          <Key>
+            <PropertyRef Name="state_id" />
+            <PropertyRef Name="city_id" />
+            <PropertyRef Name="city_name" />
+          </Key>
+          <Property Type="Int32" Name="state_id" Nullable="false" />
+          <Property Type="String" Name="state_name" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="city_id" Nullable="false" />
+          <Property Type="String" Name="city_name" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="state_master_id" />
+        </EntityType>
+        <EntityType Name="area_city_state_view">
+          <Key>
+            <PropertyRef Name="area_id" />
+            <PropertyRef Name="city_name" />
+          </Key>
+          <Property Type="Int32" Name="area_id" Nullable="false" />
+          <Property Type="String" Name="area_name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="city_id" />
+          <Property Type="Int32" Name="state_id" />
+          <Property Type="String" Name="city_name" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="state_name" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="user_details">
+          <Key>
+            <PropertyRef Name="pro_id" />
+          </Key>
+          <Property Type="Int32" Name="pro_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="full_name" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ph_no" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="altr_ph_no" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="address_1" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="address_2" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="city" Nullable="false" />
+          <Property Type="Int32" Name="state" Nullable="false" />
+          <Property Type="String" Name="user_type" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ct_dt" Precision="3" />
+          <Property Type="Int32" Name="ct_by" />
+          <Property Type="DateTime" Name="up_dt" Precision="3" />
+          <Property Type="Int32" Name="up_by" />
+          <Property Type="String" Name="status" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="user_details1" Relationship="eltsModel.FK_user_details_user_details" FromRole="user_details" ToRole="user_details1" />
+          <NavigationProperty Name="user_details2" Relationship="eltsModel.FK_user_details_user_details" FromRole="user_details1" ToRole="user_details" />
+          <NavigationProperty Name="user_profile" Relationship="eltsModel.FK_user_profile_user_profile" FromRole="user_details" ToRole="user_profile" />
+          <NavigationProperty Name="state_master" Relationship="eltsModel.FK_user_details_state_master" FromRole="user_details" ToRole="state_master" />
+        </EntityType>
+        <EntityType Name="user_profile">
+          <Key>
+            <PropertyRef Name="upro_id" />
+          </Key>
+          <Property Type="Int32" Name="upro_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="usr_id" Nullable="false" />
+          <Property Type="String" Name="usr_name" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="usr_pass" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ispass_reset" />
+          <Property Type="Boolean" Name="isPhone_verified" />
+          <Property Type="Boolean" Name="isEmail_verified" />
+          <Property Type="Boolean" Name="isOnline" />
+          <Property Type="DateTime" Name="last_login" Precision="3" />
+          <Property Type="Int32" Name="failed_attempts" />
+          <Property Type="DateTime" Name="ct_dt" Precision="3" />
+          <Property Type="Int32" Name="ct_by" />
+          <Property Type="DateTime" Name="up_dt" Precision="3" />
+          <Property Type="Int32" Name="up_by" />
+          <Property Type="String" Name="status" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="user_details" Relationship="eltsModel.FK_user_profile_user_profile" FromRole="user_profile" ToRole="user_details" />
+        </EntityType>
+        <Association Name="FK_user_details_user_details">
+          <End Type="eltsModel.user_details" Role="user_details" Multiplicity="1" />
+          <End Type="eltsModel.user_details" Role="user_details1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user_details">
+              <PropertyRef Name="pro_id" />
+            </Principal>
+            <Dependent Role="user_details1">
+              <PropertyRef Name="pro_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_profile_user_profile">
+          <End Type="eltsModel.user_details" Role="user_details" Multiplicity="1" />
+          <End Type="eltsModel.user_profile" Role="user_profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_details">
+              <PropertyRef Name="pro_id" />
+            </Principal>
+            <Dependent Role="user_profile">
+              <PropertyRef Name="usr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="user_profile_with_user_details_view">
+          <Key>
+            <PropertyRef Name="pro_id" />
+            <PropertyRef Name="full_name" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="ph_no" />
+            <PropertyRef Name="address_1" />
+            <PropertyRef Name="city" />
+            <PropertyRef Name="state" />
+            <PropertyRef Name="user_type" />
+            <PropertyRef Name="city_name" />
+          </Key>
+          <Property Type="Int32" Name="pro_id" Nullable="false" />
+          <Property Type="String" Name="full_name" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ph_no" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="address_1" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="city" Nullable="false" />
+          <Property Type="String" Name="address_2" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="state" Nullable="false" />
+          <Property Type="String" Name="user_type" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ct_dt" Precision="3" />
+          <Property Type="Int32" Name="ct_by" />
+          <Property Type="Int32" Name="up_by" />
+          <Property Type="String" Name="status" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="usr_name" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="usr_pass" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ispass_reset" />
+          <Property Type="Boolean" Name="isPhone_verified" />
+          <Property Type="Boolean" Name="isEmail_verified" />
+          <Property Type="Boolean" Name="isOnline" />
+          <Property Type="DateTime" Name="last_login" Precision="3" />
+          <Property Type="Int32" Name="failed_attempts" />
+          <Property Type="String" Name="city_name" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="state_name" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_user_details_state_master">
+          <End Type="eltsModel.state_master" Role="state_master" Multiplicity="1" />
+          <End Type="eltsModel.user_details" Role="user_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state_master">
+              <PropertyRef Name="state_id" />
+            </Principal>
+            <Dependent Role="user_details">
+              <PropertyRef Name="state" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="eltsModelStoreContainer" CdmEntityContainer="elts_lorry_Entities">
+          <EntitySetMapping Name="area_master">
+            <EntityTypeMapping TypeName="eltsModel.area_master">
+              <MappingFragment StoreEntitySet="area_master">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="area_name" ColumnName="area_name" />
+                <ScalarProperty Name="area_id" ColumnName="area_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="city_master">
+            <EntityTypeMapping TypeName="eltsModel.city_master">
+              <MappingFragment StoreEntitySet="city_master">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="state_master_id" ColumnName="state_master_id" />
+                <ScalarProperty Name="city_name" ColumnName="city_name" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="state_master">
+            <EntityTypeMapping TypeName="eltsModel.state_master">
+              <MappingFragment StoreEntitySet="state_master">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="state_name" ColumnName="state_name" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAdmins">
+            <EntityTypeMapping TypeName="eltsModel.tblAdmin">
+              <MappingFragment StoreEntitySet="tblAdmin">
+                <ScalarProperty Name="UpDt" ColumnName="UpDt" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UPass" ColumnName="UPass" />
+                <ScalarProperty Name="UName" ColumnName="UName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vehicle_type">
+            <EntityTypeMapping TypeName="eltsModel.vehicle_type">
+              <MappingFragment StoreEntitySet="vehicle_type">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="type_name" ColumnName="type_name" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="city_with_state_view">
+            <EntityTypeMapping TypeName="eltsModel.city_with_state_view">
+              <MappingFragment StoreEntitySet="city_with_state_view">
+                <ScalarProperty Name="state_master_id" ColumnName="state_master_id" />
+                <ScalarProperty Name="city_name" ColumnName="city_name" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="state_name" ColumnName="state_name" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="area_city_state_view">
+            <EntityTypeMapping TypeName="eltsModel.area_city_state_view">
+              <MappingFragment StoreEntitySet="area_city_state_view">
+                <ScalarProperty Name="state_name" ColumnName="state_name" />
+                <ScalarProperty Name="city_name" ColumnName="city_name" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="area_name" ColumnName="area_name" />
+                <ScalarProperty Name="area_id" ColumnName="area_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_details">
+            <EntityTypeMapping TypeName="eltsModel.user_details">
+              <MappingFragment StoreEntitySet="user_details">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="up_by" ColumnName="up_by" />
+                <ScalarProperty Name="up_dt" ColumnName="up_dt" />
+                <ScalarProperty Name="ct_by" ColumnName="ct_by" />
+                <ScalarProperty Name="ct_dt" ColumnName="ct_dt" />
+                <ScalarProperty Name="user_type" ColumnName="user_type" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="address_2" ColumnName="address_2" />
+                <ScalarProperty Name="address_1" ColumnName="address_1" />
+                <ScalarProperty Name="altr_ph_no" ColumnName="altr_ph_no" />
+                <ScalarProperty Name="ph_no" ColumnName="ph_no" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="pro_id" ColumnName="pro_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_profile">
+            <EntityTypeMapping TypeName="eltsModel.user_profile">
+              <MappingFragment StoreEntitySet="user_profile">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="up_by" ColumnName="up_by" />
+                <ScalarProperty Name="up_dt" ColumnName="up_dt" />
+                <ScalarProperty Name="ct_by" ColumnName="ct_by" />
+                <ScalarProperty Name="ct_dt" ColumnName="ct_dt" />
+                <ScalarProperty Name="failed_attempts" ColumnName="failed_attempts" />
+                <ScalarProperty Name="last_login" ColumnName="last_login" />
+                <ScalarProperty Name="isOnline" ColumnName="isOnline" />
+                <ScalarProperty Name="isEmail_verified" ColumnName="isEmail_verified" />
+                <ScalarProperty Name="isPhone_verified" ColumnName="isPhone_verified" />
+                <ScalarProperty Name="ispass_reset" ColumnName="ispass_reset" />
+                <ScalarProperty Name="usr_pass" ColumnName="usr_pass" />
+                <ScalarProperty Name="usr_name" ColumnName="usr_name" />
+                <ScalarProperty Name="usr_id" ColumnName="usr_id" />
+                <ScalarProperty Name="upro_id" ColumnName="upro_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_profile_with_user_details_view">
+            <EntityTypeMapping TypeName="eltsModel.user_profile_with_user_details_view">
+              <MappingFragment StoreEntitySet="user_profile_with_user_details_view">
+                <ScalarProperty Name="state_name" ColumnName="state_name" />
+                <ScalarProperty Name="city_name" ColumnName="city_name" />
+                <ScalarProperty Name="failed_attempts" ColumnName="failed_attempts" />
+                <ScalarProperty Name="last_login" ColumnName="last_login" />
+                <ScalarProperty Name="isOnline" ColumnName="isOnline" />
+                <ScalarProperty Name="isEmail_verified" ColumnName="isEmail_verified" />
+                <ScalarProperty Name="isPhone_verified" ColumnName="isPhone_verified" />
+                <ScalarProperty Name="ispass_reset" ColumnName="ispass_reset" />
+                <ScalarProperty Name="usr_pass" ColumnName="usr_pass" />
+                <ScalarProperty Name="usr_name" ColumnName="usr_name" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="up_by" ColumnName="up_by" />
+                <ScalarProperty Name="ct_by" ColumnName="ct_by" />
+                <ScalarProperty Name="ct_dt" ColumnName="ct_dt" />
+                <ScalarProperty Name="user_type" ColumnName="user_type" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="address_2" ColumnName="address_2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="address_1" ColumnName="address_1" />
+                <ScalarProperty Name="ph_no" ColumnName="ph_no" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="pro_id" ColumnName="pro_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
